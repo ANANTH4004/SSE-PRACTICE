@@ -1,0 +1,16 @@
+.input-with-list {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  margin: 20px auto;
+  font-family: Arial, sans-serif;
+  font-size: 16px;
+  align-items: center;
+}
+
+.highlight {
+  background-color: rgb(30, 173, 30);
+  padding: 1px;
+  /* border: 1px solid red; */
+  border-radius: 20px;
+}
