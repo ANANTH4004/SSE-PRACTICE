@@ -8,16 +8,18 @@ function filterEle(value) {
     if (value.trim() === '') {
       item.innerHTML = originalText
       item.style.display = 'block'
-    } else if (originalText.toLowerCase().includes(value.toLowerCase())) {
-      const regex = new RegExp(`(${value})`, 'ig') // case-insensitive match
-      const highlightedText = originalText.replace(
-        regex,
-        `<span class="highlight">$1</span>`
-      )
-      item.innerHTML = highlightedText
-      item.style.display = 'block'
     } else {
-      item.style.display = 'none'
+      if (originalText.toLowerCase().includes(value.toLowerCase())) {
+        const regex = new RegExp(`(${value})`, 'ig') // case-insensitive match
+        const highlightedText = originalText.replace(
+          regex,
+          `<span class="highlight">$1</span>`
+        )
+        item.innerHTML = highlightedText
+        item.style.display = 'block'
+      } else {
+        item.style.display = 'none'
+      }
     }
   })
 }
