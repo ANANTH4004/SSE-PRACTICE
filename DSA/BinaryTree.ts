@@ -35,7 +35,7 @@ class BinarySearchTree {
     }
   }
 
-  insert(value) {
+  insert(value: number) {
     const newNode = new TNode(value)
     if (this.isEmpty()) {
       this.root = newNode
@@ -44,7 +44,7 @@ class BinarySearchTree {
     }
   }
 
-  private searchNode(root: TNode | null, value: number) {
+  private searchNode(root: TNode | null, value: number): boolean {
     if (!root) return false
     if (root.value == value) return true
     else if (root.value > value) {
@@ -86,6 +86,39 @@ class BinarySearchTree {
       console.log(root.value)
     }
   }
+
+  min(root: TNode | null = this.root) {
+    if (!root) return undefined
+    while (root.left) {
+      root = root.left
+    }
+    return root.value
+  }
+
+  delelteNode(node: TNode, value: number): TNode | null {
+    if (node === null) {
+      return node
+    }
+    if (value < node.value) {
+      node.left = this.delelteNode(node.left!, value)
+    } else if (value > node.value) {
+      node.right = this.delelteNode(node.right!, value)
+    } else {
+      if (!node.right && !node.left) {
+        return null
+      } else if (!node.left) {
+        return node.right
+      } else if (!node.right) {
+        return node.left
+      }
+      node.value = this.min(node.right)!
+      node.right = this.delelteNode(node.right, node.value)
+    }
+    return node
+  }
+  delete(value: number) {
+    this.root = this.delelteNode(this.root!, value)
+  }
 }
 
 const bst = new BinarySearchTree()
@@ -93,7 +126,11 @@ const bst = new BinarySearchTree()
 bst.insert(10)
 bst.insert(5)
 bst.insert(15)
+bst.insert(95)
 bst.insert(3)
 bst.insert(7)
 
+bst.inOrder()
+bst.delete(10)
+console.log('Minimum number of Tree is ', bst)
 bst.inOrder()
