@@ -119,6 +119,34 @@ class BinarySearchTree {
   delete(value: number) {
     this.root = this.delelteNode(this.root!, value)
   }
+  //Breath first search
+  levelOrderTravesal(root: TNode = this.root!) {
+    //use optimized queue implementation
+    const queue: TNode[] = []
+    let curr: TNode | undefined
+    queue.push(root)
+    while ((curr = queue.shift())) {
+      console.log(curr.value)
+      if (curr.left) queue.push(curr.left)
+      if (curr.right) queue.push(curr.right)
+    }
+  }
+  // Minimum value of a tree
+  // min(root: TNode = this.root!) {
+  //   if (!root.left) {
+  //     console.log('Minumum value ', root.value)
+  //   } else {
+  //     return this.min(root.left)
+  //   }
+  // }
+
+  max(root: TNode = this.root!) {
+    if (!root.right) {
+      console.log('Maximum value ', root.value)
+    } else {
+      return this.max(root.right)
+    }
+  }
 }
 
 const bst = new BinarySearchTree()
@@ -134,3 +162,5 @@ bst.inOrder()
 bst.delete(10)
 console.log('Minimum number of Tree is ', bst)
 bst.inOrder()
+bst.levelOrderTravesal()
+bst.max()
