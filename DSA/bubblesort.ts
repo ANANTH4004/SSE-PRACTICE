@@ -1,13 +1,16 @@
 function bubbleSort(array: number[]) {
   let swapped: boolean
+  let length = array.length
   do {
     swapped = false
-    for (let i = 0; i < array.length - 1; i++) {
+    for (let i = 0; i < length - 1; i++) {
       if (array[i] > array[i + 1]) {
         ;[array[i], array[i + 1]] = [array[i + 1], array[i]]
         swapped = true
       }
     }
+    console.log('array at end ', array)
+    length--
   } while (swapped)
   return array
 }
